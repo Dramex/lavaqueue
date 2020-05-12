@@ -18,7 +18,7 @@ export default class Queue extends EventEmitter {
       prev: `playlists.${this.guildID}.prev`, // left-most (first) element is the currently playing track
     };
 
-    this.on('event', async (d) => {
+    this.on('event_DISABLED', async (d) => {
       // if the track wasn't replaced or manually stopped, continue playing the next song
       if (!["TrackEndEvent","TrackStartEvent"].includes(d.type) || (d.type === "TrackEndEvent" && !['REPLACED', 'STOPPED'].includes(d.reason))) {
         let count = d.type === 'TrackEndEvent' ? undefined : 1;
