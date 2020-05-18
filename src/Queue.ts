@@ -101,6 +101,7 @@ export default class Queue extends EventEmitter {
   }
 
   public async clear(): Promise<number> {
+    this.store.client.emit('clear', true);
     return this._redis.del(this.keys.next, this.keys.prev, this.keys.pos);
   }
 
